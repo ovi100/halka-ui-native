@@ -1,6 +1,6 @@
 {
   "name": "halka-ui-native",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A React Native UI components library with Tailwind CSS and Reanimated",
   "keywords": [
     "react-native",
