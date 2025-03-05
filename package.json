@@ -3,11 +3,11 @@
   "version": "1.0.12",
   "description": "A React Native UI components library with Tailwind CSS and Reanimated",
   "keywords": [
+    "halka",
     "react-native",
     "ui-components",
-    "tailwindcss",
-    "react-native-reanimated",
-    "nativewind"
+    "components",
+    "ui"
   ],
   "homepage": "https://github.com/ovi100/halka-ui-native.git#readme",
   "bugs": {
@@ -27,6 +27,8 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.70.0",
+    "react-native-reanimated": ">=3.0.0",
+    "react-native-svg": ">=15.0.0",
     "nativewind": ">=2.0.11",
     "tailwindcss": "^3.3.2"
   }

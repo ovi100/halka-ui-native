@@ -44,6 +44,7 @@ const Button = ({
     secondary: { bg: 'bg-purple-500', text: 'text-white', iconColor: '#FFFFFF' },
     danger: { bg: 'bg-red-500', text: 'text-white', iconColor: '#FFFFFF' },
     success: { bg: 'bg-green-500', text: 'text-white', iconColor: '#FFFFFF' },
+    warn: { bg: 'bg-orange-400', text: 'text-white', iconColor: '#FFFFFF' },
     cancel: { bg: 'bg-gray-200', text: 'text-gray-700', iconColor: '#FFFFFF' },
     action: { bg: 'bg-sky-200', text: 'text-blue-700', iconColor: '#FFFFFF' },
   };

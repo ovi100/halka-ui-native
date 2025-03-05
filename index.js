@@ -1,16 +1,20 @@
-import Accordion from "./components/Accordion";
-import Button from "./components/Button";
-import CircularProgress from "./components/CircularProgress";
-import Dialog from "./components/Dialog";
-import Modal from "./components/Modal";
-import ProgressBar from "./components/ProgressBar";
+import Accordion from './Accordion';
+import Button from './Button';
+import CheckBox from './CheckBox';
+import CircularProgress from './CircularProgress';
+import Dialog from './Dialog';
+import Modal from './Modal';
+import ProgressBar from './ProgressBar';
+import Tab from './Tab';
 
 
 export {
   Accordion,
   Button,
+  CheckBox,
   CircularProgress,
   Dialog,
   Modal,
   ProgressBar,
+  Tab,
 };

@@ -1,16 +1,32 @@
 import React from 'react';
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
 
+const defaultProps = {
+  isOpen: false,
+  header: 'Dialog Header',
+  subHeader: '',
+  onClose: null,
+  onSubmit: null,
+  leftButtonText: 'Cancel',
+  rightButtonText: 'Submit',
+};
 const Dialog = ({
   isOpen,
-  modalHeader,
-  modalSubHeader,
+  header,
+  subHeader,
   onClose,
   onSubmit,
   leftButtonText,
   rightButtonText,
-  children = null,
+  children,
 }) => {
+  isOpen = isOpen || defaultProps.isOpen;
+  header = header || defaultProps.header;
+  subHeader = subHeader || defaultProps.subHeader;
+  onClose = onClose || defaultProps.onClose;
+  onSubmit = onSubmit || defaultProps.onSubmit;
+  leftButtonText = leftButtonText || defaultProps.leftButtonText;
+  rightButtonText = rightButtonText || defaultProps.rightButtonText;
   return (
     <Modal
       visible={isOpen}
@@ -21,13 +37,13 @@ const Dialog = ({
         <View className="bg-white w-full rounded-md">
           <View className="dialog-header px-5 pt-5">
             <Text className="text-lg xs:text-xl text-black text-center font-bold">
-              {modalHeader}
+              {header}
             </Text>
           </View>
           <View className="dialog-body mt-3 px-5">
             {!children && (
               <Text className="text-base text-black text-center font-medium">
-                {modalSubHeader}
+                {subHeader}
               </Text>
             )}
             {children && children}

@@ -11,11 +11,22 @@ const defaultProps = {
   title: 'Accordion',
   size: 'medium',
   variant: 'default',
-  icon: null,
-  children: <Text className="p-4">This accordion children can be anything Ex: Text, View.......</Text>,
+  titleIcon: null,
+  expandIcon: null,
+  children: <Text className="p-4">This is accordion children and it can be anything Ex: Text, View.......</Text>,
 };
 
-const Accordion = ({ title, size, variant, icon, children }) => {
+const TitleIcon = ({ icon, size, color }) => {
+  if (!icon) { return null; }
+  return React.cloneElement(icon, { size, color });
+};
+
+const ExpandIcon = ({ icon, size, color }) => {
+  if (!icon) { return null; }
+  return React.cloneElement(icon, { size, color });
+};
+
+const Accordion = ({ title, size, variant, titleIcon, expandIcon, children }) => {
   const [expanded, setExpanded] = useState(false);
   // const height = useSharedValue(0);
   const rotate = useSharedValue('0deg');
@@ -23,7 +34,8 @@ const Accordion = ({ title, size, variant, icon, children }) => {
   title = title || defaultProps.title;
   size = size || defaultProps.size;
   variant = variant || defaultProps.variant;
-  icon = icon || defaultProps.icon;
+  titleIcon = titleIcon || defaultProps.titleIcon;
+  expandIcon = expandIcon || defaultProps.expandIcon;
   children = children || defaultProps.children;
 
   const sizes = {
@@ -39,6 +51,7 @@ const Accordion = ({ title, size, variant, icon, children }) => {
     secondary: { bg: 'bg-purple-500', text: 'text-white', iconColor: '#FFFFFF' },
     danger: { bg: 'bg-red-500', text: 'text-white', iconColor: '#FFFFFF' },
     success: { bg: 'bg-green-500', text: 'text-white', iconColor: '#FFFFFF' },
+    warn: { bg: 'bg-orange-400', text: 'text-white', iconColor: '#FFFFFF' },
     cancel: { bg: 'bg-gray-200', text: 'text-gray-700', iconColor: '#FFFFFF' },
     action: { bg: 'bg-sky-200', text: 'text-blue-700', iconColor: '#FFFFFF' },
   };
@@ -54,10 +67,9 @@ const Accordion = ({ title, size, variant, icon, children }) => {
     overflow: 'hidden',
   }));
 
-  const iconStyle = useAnimatedStyle(() => ({
+  const expandIconStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: rotate.value }],
   }));
-
 
   return (
     <View className="border border-gray-300 rounded-md overflow-hidden mb-2">
@@ -65,12 +77,21 @@ const Accordion = ({ title, size, variant, icon, children }) => {
         className={`flex-row justify-between items-center ${sizes[size].space} ${variants[variant].bg}`}
         onPress={toggleAccordion}>
         <View className="flex-row items-center">
-          {icon && <View className="mr-2">{icon}</View>}
+          {titleIcon && (
+            <View className="mr-2">
+              <TitleIcon icon={titleIcon} size={sizes[size].iconSize} color={variants[variant].iconColor} />
+            </View>
+          )}
           <Text
             className={`${variants[variant].text} ${sizes[size].fontSize} font-semibold`}>
             {title}
           </Text>
         </View>
+        {expandIcon && (
+          <Animated.View style={expandIconStyle}>
+            <ExpandIcon icon={expandIcon} size={sizes[size].iconSize} color={variants[variant].iconColor} />
+          </Animated.View>
+        )}
       </Pressable>
 
       <Animated.View style={animatedStyle} className={`bg-white ${expanded ? 'max-h-auto' : 'h-0'} duration-300 ease-in-out`}>

@@ -31,13 +31,13 @@ const CircularProgress = ({ size, variant, progress, duration }) => {
   };
 
   const variants = {
-    default: { track: '#e5e7eb', value: '#374151', text: '#374151' },
-    brand: { track: '#e5e7eb', value: '#c03221', text: '#c03221' },
-    primary: { track: '#e5e7eb', value: '#3b82f6', text: '#3b82f6' },
-    secondary: { track: '#e5e7eb', value: '#a855f7', text: '#a855f7' },
-    danger: { track: '#e5e7eb', value: '#ef4444', text: '#ef4444' },
-    success: { track: '#e5e7eb', value: '#22c55e', text: '#22c55e' },
-    warn: { track: '#e5e7eb', value: '#f1c40f', text: '#f1c40f' },
+    default: { track: '#e5e7eb', fill: '#374151', text: '#374151' },
+    brand: { track: '#e5e7eb', fill: '#c03221', text: '#c03221' },
+    primary: { track: '#e5e7eb', fill: '#3b82f6', text: '#3b82f6' },
+    secondary: { track: '#e5e7eb', fill: '#a855f7', text: '#a855f7' },
+    danger: { track: '#e5e7eb', fill: '#ef4444', text: '#ef4444' },
+    success: { track: '#e5e7eb', fill: '#22c55e', text: '#22c55e' },
+    warn: { track: '#e5e7eb', fill: '#ff8904', text: '#ff8904' },
     // custom: custom,
   };
   const SIZE = width * sizes[size].width; // Size of the circular progress
@@ -83,7 +83,7 @@ const CircularProgress = ({ size, variant, progress, duration }) => {
           cx={SIZE / 2}
           cy={SIZE / 2}
           r={radius}
-          stroke={variants[variant].value}
+          stroke={variants[variant].fill}
           strokeWidth={strokeWidth}
           fill="transparent"
           strokeDasharray={circumference}
