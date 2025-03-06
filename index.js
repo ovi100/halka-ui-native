@@ -1,11 +1,11 @@
-import Accordion from './Accordion';
-import Button from './Button';
-import CheckBox from './CheckBox';
-import CircularProgress from './CircularProgress';
-import Dialog from './Dialog';
-import Modal from './Modal';
-import ProgressBar from './ProgressBar';
-import Tab from './Tab';
+import Accordion from './components/Accordion';
+import Button from './components/Button';
+import CheckBox from './components/CheckBox';
+import CircularProgress from './components/CircularProgress';
+import Dialog from './components/Dialog';
+import Modal from './components/Modal';
+import ProgressBar from './components/ProgressBar';
+import Tab from './components/Tab';
 
 
 export {
@@ -16,5 +16,5 @@ export {
   Dialog,
   Modal,
   ProgressBar,
-  Tab,
+  Tab
 };

@@ -83,9 +83,10 @@ export default App;
 
 <table>
   <tr>
-    <td><img src="./images/1.jpg" width="250" alt="Alt Text"></td>
-    <td><img src="./images/2.jpg" width="250" alt="Alt Text"></td>
-    <td><img src="./images/3.jpg" width="250" alt="Alt Text"></td>
+    <td><img src="https://github.com/ovi100/resources/blob/main/images/native-ui/video.gif?raw=true" width="250" alt="Alt Text"></td>
+    <td><img src="https://github.com/ovi100/resources/blob/main/images/native-ui/1.jpg?raw=true" width="250" alt="Alt Text"></td>
+    <td><img src="https://github.com/ovi100/resources/blob/main/images/native-ui/2.jpg?raw=true" width="250" alt="Alt Text"></td>
+    <td><img src="https://github.com/ovi100/resources/blob/main/images/native-ui/3.jpg?raw=true" width="250" alt="Alt Text"></td>
   </tr>
 </table>
 
