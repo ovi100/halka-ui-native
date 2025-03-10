@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedProps,
@@ -7,7 +7,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { Svg, Circle } from 'react-native-svg';
-import { width } from '../utils';
+const { width } = Dimensions.get('window');
 
 const defaultProps = {
   size: 'medium',

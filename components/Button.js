@@ -1,76 +1,101 @@
 import React from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
-
-const defaultProps = {
-  size: 'medium',
-  variant: 'default',
-  disabled: false,
-  loading: false,
-  text: 'Button',
-  onPress: null,
-  icon: null,
-};
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Button = ({
-  size,
-  variant,
-  disabled,
-  loading,
-  text,
-  onPress,
-  icon,
+  size = 'medium',
+  variant = 'default',
+  text = 'Button text',
+  brandColor = null,
+  onPress = null,
+  icon = null,
+  disabled = false,
+  loading = false,
 }) => {
-  size = size || defaultProps.size;
-  variant = variant || defaultProps.variant;
-  disabled = disabled || defaultProps.disabled;
-  loading = loading || defaultProps.loading;
-  text = text || defaultProps.text;
-  icon = icon || defaultProps.icon;
-  text = text || defaultProps.text;
-  icon = icon || defaultProps.icon;
-  text = text || defaultProps.text;
-  onPress = onPress || defaultProps.onPress;
-
   const sizes = {
-    small: { space: 'p-3', fontSize: 'text-sm md:text-base', iconSize: 4 },
-    medium: { space: 'p-4', fontSize: 'text-base md:text-lg', iconSize: 6 },
-    large: { space: 'p-5', fontSize: 'text-lg md:text-xl', iconSize: 8 },
+    small: { space: 10, fontSize: 14, iconSize: 4 },
+    medium: { space: 14, fontSize: 16, iconSize: 6 },
+    large: { space: 18, fontSize: 18, iconSize: 8 },
   };
 
-  const variants = {
-    default: { bg: 'bg-gray-300', text: 'text-gray-700', iconColor: '#000000' },
-    brand: { bg: 'bg-brand', text: 'text-white', iconColor: '#FFFFFF' },
-    primary: { bg: 'bg-blue-500', text: 'text-white', iconColor: '#FFFFFF' },
-    secondary: { bg: 'bg-purple-500', text: 'text-white', iconColor: '#FFFFFF' },
-    danger: { bg: 'bg-red-500', text: 'text-white', iconColor: '#FFFFFF' },
-    success: { bg: 'bg-green-500', text: 'text-white', iconColor: '#FFFFFF' },
-    warn: { bg: 'bg-orange-400', text: 'text-white', iconColor: '#FFFFFF' },
-    cancel: { bg: 'bg-gray-200', text: 'text-gray-700', iconColor: '#FFFFFF' },
-    action: { bg: 'bg-sky-200', text: 'text-blue-700', iconColor: '#FFFFFF' },
+  let variants = {
+    default: { bg: '#d1d5db', text: '#1f2937', iconColor: 'black' },
+    brand: { bg: '#4f46e5', text: 'white', iconColor: 'white' },
+    primary: { bg: '#3b82f6', text: 'white', iconColor: 'white' },
+    secondary: { bg: '#a855f7', text: 'white', iconColor: 'white' },
+    danger: { bg: '#ef4444', text: 'white', iconColor: 'white' },
+    success: { bg: '#22c55e', text: 'white', iconColor: 'white' },
+    warn: { bg: '#fb923c', text: 'white', iconColor: 'white' },
+    cancel: { bg: '#e5e7eb', text: '#374151', iconColor: 'white' },
+    action: { bg: '#bae6fd', text: '#1d4ed8', iconColor: 'white' },
   };
+
+  if (variant === 'brand' && brandColor) {
+    variants[variant].bg = brandColor;
+  }
 
   const Wrapper = !loading && !disabled ? TouchableOpacity : View;
+
+  // Dynamic styles based on props
+  const getDynamicContainerStyles = (s, v, d) => {
+    return {
+      padding: sizes[s].space,
+      backgroundColor: variants[v].bg,
+      opacity: d ? 0.5 : 1,
+    };
+  };
+
+  const getDynamicTextStyles = (s, v) => {
+    return {
+      color: variants[v].text,
+      fontSize: sizes[s].fontSize,
+    };
+  };
+
+  const dynamicContainerStyles = getDynamicContainerStyles(size, variant, disabled);
+  const dynamicTextStyles = getDynamicTextStyles(size, variant);
 
   return (
     <Wrapper
       onPress={onPress}
       disabled={disabled}
-      className={`flex flex-row items-center justify-center rounded-md
-        ${sizes[size].space} ${variants[variant].bg} ${disabled && 'opacity-50'}`}
+      style={[styles.container, dynamicContainerStyles]}
     >
       {loading ? (
         <>
           <ActivityIndicator size="small" color="#FFF" />
-          {text && <Text className={`${sizes[size].fontSize} ${variants[variant].text} font-semibold ml-2`}>{text}</Text>}
+          {text && <Text style={[styles.loadingText, dynamicTextStyles]}>{text}</Text>}
         </>
       ) : (
-        <View className="flex flex-row items-center">
-          {icon && <View className="mr-2">{icon}</View>}
-          <Text className={`${sizes[size].fontSize} ${variants[variant].text} font-semibold`}>{text}</Text>
+        <View style={styles.buttonContainer}>
+          {icon && <View style={styles.buttonIcon}>{icon}</View>}
+          <Text style={[styles.buttonText, dynamicTextStyles]}>{text}</Text>
         </View>
       )}
     </Wrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 6,
+  },
+  loadingText: {
+    fontWeight: 'semibold',
+    marginLeft: 8,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonIcon: {
+    marginRight: 8,
+  },
+  buttonText: {
+    fontWeight: 'semibold',
+  },
+});
 
 export default Button;
